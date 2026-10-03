@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eljohn Jay Cutayan | Portfolio & Career Roadmap</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FAF6F0',
+              100: '#F4EAE1',
+              200: '#E8D5C4',
+              300: '#D5B8A0',
+              400: '#C68B59',
+              500: '#B85C38',
+              600: '#8B4513',
+              700: '#5C3D2E',
+              800: '#3D2612',
+              900: '#2D1810',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF6F0;
+      color: #2D1810;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .bg-grid-pattern {
+      background-image: radial-gradient(#C68B59 0.75px, transparent 0.75px);
+      background-size: 24px 24px;
+      background-color: #FAF6F0;
+      opacity: 0.9;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(213, 184, 160, 0.4);
+    }
+
+    .dev-active .editable-field {
+      outline: 2px dashed #B85C38 !important;
+      outline-offset: 3px;
+      cursor: text;
+      border-radius: 4px;
+      background-color: rgba(244, 234, 225, 0.5);
+    }
+
+    .dev-active .editable-field:hover {
+      background-color: rgba(232, 213, 196, 0.8);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF6F0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D5B8A0;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #B85C38;
+    }
+
+    /* Print styling */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; color: black; }
+      .glass-card { box-shadow: none; border: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body class="bg-grid-pattern min-h-screen antialiased flex flex-col justify-between">
+
+  <!-- TOP NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-brand-200 shadow-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-700 to-brand-900 flex items-center justify-center text-white font-display font-bold text-xl shadow-md">
+          EC
+        </div>
+        <div>
+          <h1 class="font-display font-bold text-lg text-brand-900 leading-none">Eljohn Jay Cutayan</h1>
+          <p class="text-xs font-semibold text-brand-500 mt-1 flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+            <span id="current-mode-text">Employer View (Read Only)</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-brand-800">
+        <a href="#about" class="hover:text-brand-500 transition-colors">About</a>
+        <a href="#education" class="hover:text-brand-500 transition-colors">Education</a>
+        <a href="#experience" class="hover:text-brand-500 transition-colors">Experience</a>
+        <a href="#skills" class="hover:text-brand-500 transition-colors">Skills</a>
+        <a href="#goalmap" class="hover:text-brand-500 transition-colors">Goal Map</a>
+        <a href="#gallery" class="hover:text-brand-500 transition-colors">Media</a>
+        <a href="#references" class="hover:text-brand-500 transition-colors">References</a>
+      </nav>
+
+      <!-- View Action Controls -->
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-brand-100 hover:bg-brand-200 text-brand-800 text-xs font-bold transition-all">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print / PDF
+        </button>
+
+        <div class="bg-brand-100 p-1 rounded-xl flex items-center border border-brand-200">
+          <button id="btn-mode-employer" onclick="setEmployerMode()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-brand-800 shadow-sm flex items-center gap-1.5">
+            <i data-lucide="eye" class="w-3.5 h-3.5 text-brand-600"></i> Employer
+          </button>
+          <button id="btn-mode-developer" onclick="openPasswordModal()" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-brand-700 hover:text-brand-900 flex items-center gap-1.5">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-brand-500"></i> Developer
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DEVELOPER LOGIN MODAL -->
+  <div id="passwordModal" class="fixed inset-0 bg-brand-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-brand-200 transform transition-all">
+      <div class="w-14 h-14 bg-brand-100 text-brand-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="key-round" class="w-7 h-7"></i>
+      </div>
+      <h3 class="font-display font-bold text-xl text-center text-brand-900">Developer Access Protected</h3>
+      <p class="text-xs text-center text-brand-600 mt-1">Please enter the security key to unlock editing tools & media upload center.</p>
+
+      <form onsubmit="handleDevLogin(event)" class="mt-6">
+        <div class="space-y-2">
+          <label class="text-xs font-bold text-brand-800 uppercase tracking-wider">Access Password</label>
+          <div class="relative">
+            <input type="password" id="devPasswordInput" placeholder="Enter password..." class="w-full px-4 py-3 rounded-xl border border-brand-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-sm pr-10">
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3.5 text-brand-400 hover:text-brand-700">
+              <i data-lucide="eye" id="passToggleIcon" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <p id="passwordError" class="text-xs text-red-600 font-medium hidden flex items-center gap-1 mt-1">
+            <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> Incorrect password. Please try again.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-center justify-end gap-3">
+          <button type="button" onclick="closePasswordModal()" class="px-4 py-2.5 rounded-xl border border-brand-200 text-brand-700 hover:bg-brand-50 text-xs font-bold transition-all">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-1.5">
+            <i data-lucide="unlock" class="w-4 h-4"></i> Authenticate
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 flex-grow">
+
+    <!-- HERO PROFILE HEADER -->
+    <section id="about" class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden">
+      <!-- Decorative Background Accent -->
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand-200/50 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row gap-8 items-center md:items-start relative z-10">
+        
+        <!-- Avatar / Initial Badge -->
+        <div class="relative group">
+          <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-brand-800 via-brand-700 to-brand-500 p-1.5 shadow-xl">
+            <div class="w-full h-full bg-brand-100 rounded-[22px] flex items-center justify-center overflow-hidden relative">
+              <span class="font-display font-extrabold text-5xl sm:text-6xl text-brand-800 tracking-wider">EJC</span>
+              <div class="absolute inset-0 bg-brand-900/10 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-xs text-white font-semibold bg-brand-900/80 px-2.5 py-1 rounded-full">STEM Student</span>
+              </div>
+            </div>
+          </div>
+          <span class="absolute -bottom-2 -right-2 bg-emerald-600 text-white p-2 rounded-xl shadow-lg border-2 border-white" title="Active Student & Future Engineer">
+            <i data-lucide="zap" class="w-4 h-4"></i>
+          </span>
+        </div>
+
+        <!-- Text Details -->
+        <div class="flex-1 text-center md:text-left space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold border border-brand-200">
+            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+            <span>Aspiring Electrical Engineer</span>
+          </div>
+
+          <div>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-brand-900">
+              <span class="editable-field" data-key="name">Eljohn Jay Cutayan</span>
+            </h2>
+            <p class="text-brand-600 font-medium text-base sm:text-lg mt-1">
+              Senior High School Grade 11 STEM Student at LPNHS
+            </p>
+          </div>
+
+          <!-- Key Stats Pills -->
+          <div class="flex flex-wrap gap-3 justify-center md:justify-start pt-2">
+            <div class="px-4 py-2.5 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center gap-2.5">
+              <i data-lucide="user" class="w-4 h-4 text-brand-500"></i>
+              <div class="text-left">
+                <p class="text-[10px] font-bold uppercase text-brand-400">Age & Nationality</p>
+                <p class="text-xs font-bold text-brand-800">
+                  <span class="editable-field" data-key="age">16</span> Y/O • <span class="editable-field" data-key="nationality">Filipino</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="px-4 py-2.5 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center gap-2.5">
+              <i data-lucide="calendar" class="w-4 h-4 text-brand-500"></i>
+              <div class="text-left">
+                <p class="text-[10px] font-bold uppercase text-brand-400">Birthday</p>
+                <p class="text-xs font-bold text-brand-800">
+                  <span class="editable-field" data-key="birthday">12/11/2009</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="px-4 py-2.5 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i>
+              <div class="text-left">
+                <p class="text-[10px] font-bold uppercase text-brand-400">Location</p>
+                <p class="text-xs font-bold text-brand-800">
+                  <span class="editable-field" data-key="address">BRGY San Juan, San Narciso, Zambales, Philippines</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="px-4 py-2.5 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center gap-2.5">
+              <i data-lucide="phone" class="w-4 h-4 text-brand-500"></i>
+              <div class="text-left">
+                <p class="text-[10px] font-bold uppercase text-brand-400">Contact</p>
+                <p class="text-xs font-bold text-brand-800">
+                  <a href="tel:09517902153" class="hover:underline text-brand-700">
+                    <span class="editable-field" data-key="contact">09517902153</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DEVELOPER MODE ACTION TOOLBAR (VISIBLE IN DEV MODE) -->
+    <section id="devBanner" class="hidden bg-gradient-to-r from-brand-800 to-brand-900 rounded-2xl p-4 sm:p-6 text-white shadow-xl no-print">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-500/30 flex items-center justify-center text-brand-200 border border-brand-400/30">
+            <i data-lucide="edit-3" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-base">Developer Editing Active</h4>
+            <p class="text-xs text-brand-200">Click highlighted text boxes directly to edit contents, or upload files below.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="saveAllEdits()" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-bold text-xs shadow transition-all flex items-center gap-1.5">
+            <i data-lucide="save" class="w-4 h-4"></i> Save Changes
+          </button>
+          <button onclick="resetPortfolioData()" class="px-3 py-2 rounded-xl bg-red-900/50 hover:bg-red-800 text-red-100 font-bold text-xs transition-all flex items-center gap-1.5 border border-red-700/50">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset Default
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & HIGHLIGHTS GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Educational Background -->
+      <section id="education" class="lg:col-span-2 glass-card rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-brand-200 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl text-brand-900">Educational Background</h3>
+            </div>
+            <span class="text-xs font-bold text-brand-600 bg-brand-100 px-3 py-1 rounded-full border border-brand-200">
+              STEM Strand
+            </span>
+          </div>
+
+          <div class="space-y-6">
+            <div class="relative pl-6 border-l-2 border-brand-400 space-y-1">
+              <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-brand-600 ring-4 ring-white"></div>
+              <div class="flex items-center justify-between">
+                <h4 class="font-display font-bold text-lg text-brand-900">
+                  <span class="editable-field" data-key="school">LPNHS (Senior High School)</span>
+                </h4>
+                <span class="text-xs font-semibold text-brand-600 bg-white px-2.5 py-0.5 rounded-md border border-brand-200">
+                  <span class="editable-field" data-key="tenure">2021 - 2026</span>
+                </span>
+              </div>
+              <p class="text-sm font-medium text-brand-700">
+                Currently: <span class="editable-field font-semibold text-brand-900" data-key="currently">Senior High School Grade 11 STEM</span>
+              </p>
+              <p class="text-xs text-brand-600 flex items-center gap-1 mt-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                <span class="editable-field" data-key="edu_address">Zambales, Philippines</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-brand-100 bg-brand-50/50 rounded-2xl p-4 flex items-center gap-3">
+          <i data-lucide="book-open-check" class="w-5 h-5 text-brand-600 shrink-0"></i>
+          <p class="text-xs text-brand-800 leading-relaxed">
+            Focused on Science, Technology, Engineering, and Mathematics coursework to build advanced analytical and mathematical rigor for future engineering studies.
+          </p>
+        </div>
+      </section>
+
+      <!-- Personal Info At A Glance Card -->
+      <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 border-b border-brand-200 pb-4 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+              <i data-lucide="id-card" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-brand-900">Profile Snapshot</h3>
+          </div>
+
+          <ul class="space-y-3 text-xs sm:text-sm">
+            <li class="flex items-center justify-between py-1 border-b border-brand-100">
+              <span class="text-brand-500 font-semibold">Full Name</span>
+              <span class="font-bold text-brand-900">Eljohn Jay Cutayan</span>
+            </li>
+            <li class="flex items-center justify-between py-1 border-b border-brand-100">
+              <span class="text-brand-500 font-semibold">Age</span>
+              <span class="font-bold text-brand-900">16 Years Old</span>
+            </li>
+            <li class="flex items-center justify-between py-1 border-b border-brand-100">
+              <span class="text-brand-500 font-semibold">Birthday</span>
+              <span class="font-bold text-brand-900">December 11, 2009</span>
+            </li>
+            <li class="flex items-center justify-between py-1 border-b border-brand-100">
+              <span class="text-brand-500 font-semibold">Nationality</span>
+              <span class="font-bold text-brand-900">Filipino</span>
+            </li>
+            <li class="flex items-center justify-between py-1">
+              <span class="text-brand-500 font-semibold">Career Goal</span>
+              <span class="font-bold text-brand-600">Electrical Engineer</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 text-center">
+          <a href="#goalmap" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold shadow transition-all">
+            <i data-lucide="map" class="w-4 h-4"></i> Explore Goal Map
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- EXPERIENCE & ACHIEVEMENTS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Experience Card -->
+      <section id="experience" class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-brand-200 pb-4 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+            <i data-lucide="briefcase" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-display font-bold text-xl text-brand-900">Experience</h3>
+        </div>
+
+        <ul class="space-y-4 text-sm text-brand-800">
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-brand-100 shadow-2xs">
+            <span class="w-6 h-6 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
+              <i data-lucide="users" class="w-3.5 h-3.5"></i>
+            </span>
+            <p class="leading-relaxed">Collaborated with team members to complete group projects</p>
+          </li>
+
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-brand-100 shadow-2xs">
+            <span class="w-6 h-6 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
+              <i data-lucide="brain-circuit" class="w-3.5 h-3.5"></i>
+            </span>
+            <p class="leading-relaxed">Practiced problem-solving, research, and creative design in school tasks</p>
+          </li>
+
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-brand-100 shadow-2xs">
+            <span class="w-6 h-6 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
+              <i data-lucide="crown" class="w-3.5 h-3.5"></i>
+            </span>
+            <p class="leading-relaxed">Served as leader for group presentations — assigned tasks, coordinated work, and ensured timely submission</p>
+          </li>
+
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-brand-100 shadow-2xs">
+            <span class="w-6 h-6 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
+              <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+            </span>
+            <p class="leading-relaxed">Applied mathematical and scientific concepts in real-life school activities</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Achievements Card -->
+      <section id="achievements" class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-brand-200 pb-4 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-display font-bold text-xl text-brand-900">Achievements</h3>
+        </div>
+
+        <ul class="space-y-3 text-sm text-brand-800">
+          <li class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+            <span class="font-semibold">Completed Junior High School education</span>
+          </li>
+
+          <li class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600 shrink-0"></i>
+            <span class="font-semibold">Received Perfect Attendance Award</span>
+          </li>
+
+          <li class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+            <span class="font-semibold">Received Good Conduct Award</span>
+          </li>
+
+          <li class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-700 shrink-0"></i>
+            <span class="font-semibold">Received With Honor Award</span>
+          </li>
+
+          <li class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+            <span>Consistently participated in academic activities and projects</span>
+          </li>
+
+          <li class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+            <span>Developed strong foundation in Mathematics, Science, and Research</span>
+          </li>
+
+          <li class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+            <span>Gained experience in leadership, cooperation, and creative work</span>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+    <!-- SKILLS AND TALENTS SECTION -->
+    <section id="skills" class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-brand-200 pb-4 mb-6 gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-xl text-brand-900">Skills & Talents</h3>
+            <p class="text-xs text-brand-600">Core competencies and strengths applied in academic tasks</p>
+          </div>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="relative w-full sm:w-64">
+          <input type="text" id="skillSearchInput" oninput="filterSkills()" placeholder="Search skills..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-white border border-brand-200 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+          <i data-lucide="search" class="w-4 h-4 text-brand-400 absolute left-3 top-2.5"></i>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="skillsGrid">
+        
+        <div class="skill-item bg-white p-5 rounded-2xl border border-brand-200 hover:shadow-md transition-all">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
+              <i data-lucide="lightbulb" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-display font-bold text-brand-900">PROBLEM SOLVING</h4>
+          </div>
+          <p class="text-xs text-brand-700 leading-relaxed">I enjoy analyzing problems and finding possible solutions.</p>
+        </div>
+
+        <div class="skill-item bg-white p-5 rounded-2xl border border-brand-200 hover:shadow-md transition-all">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-brand-100 text-brand-800 flex items-center justify-center">
+              <i data-lucide="calculator" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-display font-bold text-brand-900">MATHEMATICS</h4>
+          </div>
+          <p class="text-xs text-brand-700 leading-relaxed">I use mathematical concepts to understand and solve problems.</p>
+        </div>
+
+        <div class="skill-item bg-white p-5 rounded-2xl border border-brand-200 hover:shadow-md transition-all">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center">
+              <i data-lucide="flask-conical" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-display font-bold text-brand-900">SCIENCE</h4>
+          </div>
+          <p class="text-xs text-brand-700 leading-relaxed">I am interested in understanding how science works in real life.</p>
+        </div>
+
+        <div class="skill-item bg-white p-5 rounded-2xl border border-brand-200 hover:shadow-md transition-all">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center">
+              <i data-lucide="palette" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-display font-bold text-brand-900">CREATIVITY</h4>
+          </div>
+          <p class="text-xs text-brand-700 leading-relaxed">I like creating new ideas and improving existing designs.</p>
+        </div>
+
+        <div class="skill-item bg-white p-5 rounded-2xl border border-brand-200 hover:shadow-md transition-all">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <i data-lucide="users" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-display font-bold text-brand-900">TEAMWORK</h4>
+          </div>
+          <p class="text-xs text-brand-700 leading-relaxed">I can cooperate with others and contribute ideas.</p>
+        </div>
+
+        <div class="skill-item bg-white p-5 rounded-2xl border border-brand-200 hover:shadow-md transition-all">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-rose-100 text-rose-800 flex items-center justify-center">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-display font-bold text-brand-900">RESEARCH</h4>
+          </div>
+          <p class="text-xs text-brand-700 leading-relaxed">I am developing my ability to gather and use information.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS ACCOMPLISHED & GOAL MAP SECTION -->
+    <section id="goalmap" class="glass-card rounded-3xl p-6 sm:p-10 shadow-md">
+      <div class="border-b border-brand-200 pb-6 mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 text-white flex items-center justify-center font-bold shadow">
+            <i data-lucide="compass" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-extrabold text-2xl text-brand-900">Projects Accomplished & Career Goal Map</h3>
+            <p class="text-xs sm:text-sm text-brand-600 mt-0.5">Key project highlights & comprehensive roadmap to becoming an Electrical Engineer</p>
+          </div>
+        </div>
+
+        <!-- Additional Project Bullets -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-brand-50/80 p-4 rounded-2xl border border-brand-200 flex items-start gap-3">
+            <i data-lucide="binary" class="w-5 h-5 text-brand-600 mt-0.5 shrink-0"></i>
+            <p class="text-xs text-brand-800 leading-relaxed">Applied mathematical and scientific concepts to complete school tasks.</p>
+          </div>
+          <div class="bg-brand-50/80 p-4 rounded-2xl border border-brand-200 flex items-start gap-3">
+            <i data-lucide="layout" class="w-5 h-5 text-brand-600 mt-0.5 shrink-0"></i>
+            <p class="text-xs text-brand-800 leading-relaxed">Designed and arranged presentations using digital and hand-drawn methods.</p>
+          </div>
+          <div class="bg-brand-50/80 p-4 rounded-2xl border border-brand-200 flex items-start gap-3">
+            <i data-lucide="check-check" class="w-5 h-5 text-brand-600 mt-0.5 shrink-0"></i>
+            <p class="text-xs text-brand-800 leading-relaxed">Worked with team members, shared ideas, and finished projects on time.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISUAL ROADMAP BANNER -->
+      <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 rounded-3xl p-6 sm:p-8 text-white mb-8 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-brand-500/20 rounded-full blur-2xl"></div>
+        
+        <div class="relative z-10 text-center max-w-3xl mx-auto space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-brand-100 text-xs font-semibold border border-white/20">
+            <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300"></i> Featured Goal Map
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl tracking-tight text-white">
+            From High School to Becoming an Electrical Engineer
+          </h2>
+          <p class="text-brand-200 italic font-medium text-sm sm:text-base">
+            "Same dream. Bigger effort. Greater future."
+          </p>
+          
+          <div class="flex items-center justify-center gap-2 text-xs font-bold text-amber-300 pt-2">
+            <span>Dream</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            <span>Plan</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            <span>Study</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            <span>Achieve</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROADMAP INTERACTIVE STEPS GRID (10 STEPS) -->
+      <div class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h4 class="font-display font-bold text-lg text-brand-900 flex items-center gap-2">
+            <i data-lucide="route" class="w-5 h-5 text-brand-600"></i>
+            10-Step Career Roadmap Breakdown
+          </h4>
+          <span class="text-xs text-brand-600 font-semibold bg-brand-100 px-3 py-1 rounded-full border border-brand-200">
+            Click checkboxes to track preview
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="goalStepsContainer">
+          
+          <!-- Step 1 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">1</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">GRADUATE HIGH SCHOOL</h5>
+                  <p class="text-xs text-brand-600">Complete Senior High School and achieve my diploma.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" checked class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Study hard</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" checked class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Maintain good grades</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" checked class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Build good habits</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">2</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">PASS THE COLLEGE ENTRANCE EXAM</h5>
+                  <p class="text-xs text-brand-600">(UPCAT / OTHER) - Pass entrance exam for a reputable university.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Review and practice</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Manage my time</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Stay confident</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">3</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">ENROLL IN A DEGREE PROGRAM</h5>
+                  <p class="text-xs text-brand-600">Take Bachelor of Science in Electrical Engineering (BS EE).</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Attend classes regularly</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Master subjects (Circuits, Electronics, Power Systems, Control Systems, Math)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Join school organizations</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">4</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">GAIN PRACTICAL EXPERIENCE</h5>
+                  <p class="text-xs text-brand-600">Do internships, laboratory work, and hands-on projects.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Join internships</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Build electrical projects</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Learn industry tools and software</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">5</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">BUILD SKILLS & CERTIFICATIONS</h5>
+                  <p class="text-xs text-brand-600">Enhance technical and professional skills for the real world.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Learn AutoCAD / ETAP / MATLAB</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Get relevant certifications</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Improve communication & teamwork</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">6</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">GRADUATE COLLEGE</h5>
+                  <p class="text-xs text-brand-600">Finish degree and achieve Bachelor's in Electrical Engineering.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Complete all requirements</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Pass board exam requirements</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Celebrate achievement</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 7 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">7</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">TAKE LICENSURE EXAM (REE)</h5>
+                  <p class="text-xs text-brand-600">Get Registered Electrical Engineer license.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Review and study intensive review</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Take the PRC board exam</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Pass and get professional license</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 8 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">8</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">START MY CAREER</h5>
+                  <p class="text-xs text-brand-600">Work as a licensed Electrical Engineer in the industry.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Find a reputable company</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Learn from experienced engineers</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Grow and contribute to field</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 9 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">9</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">CONTINUE LEARNING & GROWING</h5>
+                  <p class="text-xs text-brand-600">Keep improving knowledge and skills throughout career.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Take advanced engineering courses</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Get higher certifications</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Stay updated with new technology</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 10 -->
+          <div class="bg-white rounded-2xl p-5 border border-brand-200 hover:border-brand-400 transition-all shadow-2xs space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center text-sm">10</span>
+                <div>
+                  <h5 class="font-display font-bold text-base text-brand-900">MAKE AN IMPACT</h5>
+                  <p class="text-xs text-brand-600">Build a safer, sustainable, and better future through EE.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 pt-2 border-t border-brand-100 text-xs text-brand-800">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Innovate and solve real-world problems</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Help my community</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span>Inspire the next generation</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CORE VALUES PILLARS -->
+      <div class="mt-8 pt-6 border-t border-brand-200">
+        <h5 class="text-center font-display font-bold text-sm text-brand-800 uppercase tracking-wider mb-4">Core Career Pillars</h5>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+          <div class="p-3 bg-brand-50 rounded-2xl border border-brand-200">
+            <i data-lucide="zap" class="w-5 h-5 text-brand-600 mx-auto mb-1"></i>
+            <span class="font-bold text-xs text-brand-900">POWER</span>
+          </div>
+          <div class="p-3 bg-brand-50 rounded-2xl border border-brand-200">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-brand-600 mx-auto mb-1"></i>
+            <span class="font-bold text-xs text-brand-900">INNOVATION</span>
+          </div>
+          <div class="p-3 bg-brand-50 rounded-2xl border border-brand-200">
+            <i data-lucide="leaf" class="w-5 h-5 text-brand-600 mx-auto mb-1"></i>
+            <span class="font-bold text-xs text-brand-900">SUSTAINABILITY</span>
+          </div>
+          <div class="p-3 bg-brand-50 rounded-2xl border border-brand-200">
+            <i data-lucide="heart" class="w-5 h-5 text-brand-600 mx-auto mb-1"></i>
+            <span class="font-bold text-xs text-brand-900">COMMUNITY</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDIA GALLERY & UPLOAD CENTER -->
+    <section id="gallery" class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-brand-200 pb-4 mb-6 gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+            <i data-lucide="image" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-xl text-brand-900">Media & Project Gallery</h3>
+            <p class="text-xs text-brand-600">Uploaded photos, diagrams, and project videos</p>
+          </div>
+        </div>
+
+        <!-- Dev Upload Button -->
+        <div id="uploadContainer" class="hidden">
+          <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow transition-all">
+            <i data-lucide="upload-cloud" class="w-4 h-4"></i> Upload Photo / Video
+            <input type="file" id="mediaFileInput" accept="image/*,video/*" multiple class="hidden" onchange="handleMediaUpload(event)">
+          </label>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="mediaGalleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Pre-populated Goal Map Visual Card -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm group">
+          <div class="h-48 bg-gradient-to-tr from-brand-800 to-brand-600 flex items-center justify-center p-6 text-center text-white relative">
+            <div>
+              <i data-lucide="map" class="w-10 h-10 mx-auto mb-2 text-brand-200"></i>
+              <h5 class="font-display font-bold text-base">Electrical Engineer Goal Map</h5>
+              <p class="text-xs text-brand-200 mt-1">10-Step High School to Career Roadmap Graphic</p>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold">Image Blueprint</span>
+          </div>
+          <div class="p-4">
+            <h5 class="font-bold text-sm text-brand-900">Goal Map Blueprint</h5>
+            <p class="text-xs text-brand-600 mt-0.5">Primary project visual showing 10 milestones from SHS STEM to REE.</p>
+          </div>
+        </div>
+
+        <!-- Academic Presentation Graphic -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm group">
+          <div class="h-48 bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center p-6 text-center text-white relative">
+            <div>
+              <i data-lucide="presentation" class="w-10 h-10 mx-auto mb-2 text-brand-200"></i>
+              <h5 class="font-display font-bold text-base">Academic Presentations</h5>
+              <p class="text-xs text-brand-200 mt-1">Hand-Drawn & Digital Media Presentations</p>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold">Design Project</span>
+          </div>
+          <div class="p-4">
+            <h5 class="font-bold text-sm text-brand-900">Presentation Portfolio</h5>
+            <p class="text-xs text-brand-600 mt-0.5">Sample slides and diagrams created for STEM class activities.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p id="emptyMediaNotice" class="text-xs text-center text-brand-400 py-6 hidden">
+        No additional media uploaded yet. Switch to Developer View to upload photos and videos.
+      </p>
+    </section>
+
+    <!-- REFERENCES SECTION -->
+    <section id="references" class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center gap-3 border-b border-brand-200 pb-4 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
+          <i data-lucide="user-check" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-xl text-brand-900">Character References</h3>
+          <p class="text-xs text-brand-600">Verification & endorsement contact</p>
+        </div>
+      </div>
+
+      <div class="max-w-md bg-white p-6 rounded-2xl border border-brand-200 shadow-2xs space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-800 font-display font-bold text-lg flex items-center justify-center">
+            JF
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-base text-brand-900">
+              <span class="editable-field" data-key="ref_name">JUN ABAN FERNANDEZ</span>
+            </h4>
+            <p class="text-xs font-semibold text-brand-600">Reference Contact</p>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-brand-100 text-xs space-y-2 text-brand-800">
+          <p class="flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i>
+            <span class="editable-field" data-key="ref_address">BRGY SAN JUAN</span>
+          </p>
+          <p class="flex items-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4 text-brand-500"></i>
+            <a href="tel:09611569593" class="hover:underline font-semibold text-brand-700">
+              <span class="editable-field" data-key="ref_contact">09611569593</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-900 text-brand-200 py-8 border-t border-brand-800 mt-12 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-brand-700 flex items-center justify-center text-white font-bold text-xs">EC</div>
+        <p>© 2026 Eljohn Jay Cutayan. STEM Student Portfolio.</p>
+      </div>
+      <p class="text-brand-400">San Narciso, Zambales, Philippines</p>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-brand-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-brand-700 flex items-center gap-3">
+      <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+      <span id="toastMessage" class="text-xs font-bold">Action completed successfully.</span>
+    </div>
+  </div>
+
+  <script>
+    // INITIAL DATA DEFAULTS
+    const defaultData = {
+      name: "Eljohn Jay Cutayan",
+      age: "16",
+      birthday: "12/11/2009",
+      nationality: "Filipino",
+      address: "BRGY San Juan, San Narciso, Zambales, Philippines",
+      contact: "09517902153",
+      school: "LPNHS",
+      edu_address: "Zambales, Philippines",
+      tenure: "2021-2026",
+      currently: "Senior high school grade 11 STEM",
+      ref_name: "JUN ABAN FERNANDEZ",
+      ref_address: "BRGY SAN JUAN",
+      ref_contact: "09611569593"
+    };
+
+    let isDeveloper = false;
+    let customMediaList = [];
+
+    // On Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadSavedData();
+      loadSavedMedia();
+    });
+
+    // Load persisted text data
+    function loadSavedData() {
+      const saved = JSON.parse(localStorage.getItem('eljohn_portfolio_data') || '{}');
+      const data = { ...defaultData, ...saved };
+
+      document.querySelectorAll('.editable-field').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (key && data[key] !== undefined) {
+          el.innerText = data[key];
+        }
+      });
+    }
+
+    // Save edited text data
+    function saveAllEdits() {
+      const currentData = {};
+      document.querySelectorAll('.editable-field').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (key) {
+          currentData[key] = el.innerText.trim();
+        }
+      });
+
+      localStorage.setItem('eljohn_portfolio_data', JSON.stringify(currentData));
+      showToast("All portfolio details saved successfully!");
+    }
+
+    // Reset Data
+    function resetPortfolioData() {
+      localStorage.removeItem('eljohn_portfolio_data');
+      localStorage.removeItem('eljohn_portfolio_media');
+      loadSavedData();
+      customMediaList = [];
+      renderMediaGallery();
+      showToast("Portfolio reset to default details.");
+    }
+
+    // Password Access Handling
+    function openPasswordModal() {
+      if (isDeveloper) {
+        showToast("You are already in Developer Mode!");
+        return;
+      }
+      document.getElementById('passwordModal').classList.remove('hidden');
+      document.getElementById('devPasswordInput').focus();
+    }
+
+    function closePasswordModal() {
+      document.getElementById('passwordModal').classList.add('hidden');
+      document.getElementById('passwordError').classList.add('hidden');
+      document.getElementById('devPasswordInput').value = '';
+    }
+
+    function togglePasswordVisibility() {
+      const input = document.getElementById('devPasswordInput');
+      const icon = document.getElementById('passToggleIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.setAttribute('data-lucide', 'eye-off');
+      } else {
+        input.type = 'password';
+        icon.setAttribute('data-lucide', 'eye');
+      }
+      lucide.createIcons();
+    }
+
+    function handleDevLogin(e) {
+      e.preventDefault();
+      const pass = document.getElementById('devPasswordInput').value;
+      if (pass === 'Eljohnjay23') {
+        isDeveloper = true;
+        closePasswordModal();
+        enableDeveloperMode();
+        showToast("Authenticated! Developer mode activated.");
+      } else {
+        document.getElementById('passwordError').classList.remove('hidden');
+      }
+    }
+
+    function setEmployerMode() {
+      isDeveloper = false;
+      document.body.classList.remove('dev-active');
+      document.getElementById('devBanner').classList.add('hidden');
+      document.getElementById('uploadContainer').classList.add('hidden');
+      
+      document.getElementById('btn-mode-employer').className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-brand-800 shadow-sm flex items-center gap-1.5";
+      document.getElementById('btn-mode-developer').className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-brand-700 hover:text-brand-900 flex items-center gap-1.5";
+      document.getElementById('current-mode-text').innerText = "Employer View (Read Only)";
+
+      // Disable editable content
+      document.querySelectorAll('.editable-field').forEach(el => {
+        el.removeAttribute('contenteditable');
+      });
+
+      showToast("Switched to Employer View (Read Only).");
+    }
+
+    function enableDeveloperMode() {
+      document.body.classList.add('dev-active');
+      document.getElementById('devBanner').classList.remove('hidden');
+      document.getElementById('uploadContainer').classList.remove('hidden');
+
+      document.getElementById('btn-mode-developer').className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-brand-700 text-white shadow-sm flex items-center gap-1.5";
+      document.getElementById('btn-mode-employer').className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-brand-700 hover:text-brand-900 flex items-center gap-1.5";
+      document.getElementById('current-mode-text').innerText = "Developer Editing Active";
+
+      // Enable inline contenteditable
+      document.querySelectorAll('.editable-field').forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+      });
+    }
+
+    // Media Upload & Local Handling
+    function handleMediaUpload(event) {
+      const files = event.target.files;
+      if (!files || files.length === 0) return;
+
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const mediaObj = {
+            id: Date.now() + Math.random(),
+            name: file.name,
+            type: file.type.startsWith('image/') ? 'image' : 'video',
+            src: e.target.result
+          };
+          customMediaList.push(mediaObj);
+          saveMediaList();
+          renderMediaGallery();
+        };
+        reader.readAsDataURL(file);
+      });
+
+      showToast("Media uploaded successfully!");
+    }
+
+    function saveMediaList() {
+      try {
+        localStorage.setItem('eljohn_portfolio_media', JSON.stringify(customMediaList));
+      } catch (err) {
+        showToast("Storage full for large video/image files.");
+      }
+    }
+
+    function loadSavedMedia() {
+      const saved = localStorage.getItem('eljohn_portfolio_media');
+      if (saved) {
+        try {
+          customMediaList = JSON.parse(saved);
+          renderMediaGallery();
+        } catch (e) {}
+      }
+    }
+
+    function renderMediaGallery() {
+      const gallery = document.getElementById('mediaGalleryGrid');
+      
+      // Preserve static 2 cards
+      const staticCards = `
+        <div class="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm group">
+          <div class="h-48 bg-gradient-to-tr from-brand-800 to-brand-600 flex items-center justify-center p-6 text-center text-white relative">
+            <div>
+              <i data-lucide="map" class="w-10 h-10 mx-auto mb-2 text-brand-200"></i>
+              <h5 class="font-display font-bold text-base">Electrical Engineer Goal Map</h5>
+              <p class="text-xs text-brand-200 mt-1">10-Step High School to Career Roadmap Graphic</p>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold">Image Blueprint</span>
+          </div>
+          <div class="p-4">
+            <h5 class="font-bold text-sm text-brand-900">Goal Map Blueprint</h5>
+            <p class="text-xs text-brand-600 mt-0.5">Primary project visual showing 10 milestones from SHS STEM to REE.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm group">
+          <div class="h-48 bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center p-6 text-center text-white relative">
+            <div>
+              <i data-lucide="presentation" class="w-10 h-10 mx-auto mb-2 text-brand-200"></i>
+              <h5 class="font-display font-bold text-base">Academic Presentations</h5>
+              <p class="text-xs text-brand-200 mt-1">Hand-Drawn & Digital Media Presentations</p>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold">Design Project</span>
+          </div>
+          <div class="p-4">
+            <h5 class="font-bold text-sm text-brand-900">Presentation Portfolio</h5>
+            <p class="text-xs text-brand-600 mt-0.5">Sample slides and diagrams created for STEM class activities.</p>
+          </div>
+        </div>
+      `;
+
+      let dynamicCards = '';
+      customMediaList.forEach(item => {
+        if (item.type === 'image') {
+          dynamicCards += `
+            <div class="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm relative group">
+              <img src="${item.src}" alt="${item.name}" class="w-full h-48 object-cover">
+              <div class="p-4 flex items-center justify-between">
+                <div>
+                  <h5 class="font-bold text-sm text-brand-900 truncate max-w-[180px]">${item.name}</h5>
+                  <p class="text-[10px] text-brand-500 font-semibold">Uploaded Photo</p>
+                </div>
+                ${isDeveloper ? `<button onclick="deleteMedia(${item.id})" class="text-red-600 hover:text-red-800 p-1.5 rounded-lg bg-red-50"><i data-lucide="trash-2" class="w-4 h-4"></i></button>` : ''}
+              </div>
+            </div>
+          `;
+        } else {
+          dynamicCards += `
+            <div class="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm relative group">
+              <video src="${item.src}" controls class="w-full h-48 object-cover bg-black"></video>
+              <div class="p-4 flex items-center justify-between">
+                <div>
+                  <h5 class="font-bold text-sm text-brand-900 truncate max-w-[180px]">${item.name}</h5>
+                  <p class="text-[10px] text-brand-500 font-semibold">Uploaded Video</p>
+                </div>
+                ${isDeveloper ? `<button onclick="deleteMedia(${item.id})" class="text-red-600 hover:text-red-800 p-1.5 rounded-lg bg-red-50"><i data-lucide="trash-2" class="w-4 h-4"></i></button>` : ''}
+              </div>
+            </div>
+          `;
+        }
+      });
+
+      gallery.innerHTML = staticCards + dynamicCards;
+      lucide.createIcons();
+    }
+
+    function deleteMedia(id) {
+      customMediaList = customMediaList.filter(m => m.id !== id);
+      saveMediaList();
+      renderMediaGallery();
+      showToast("Media item removed.");
+    }
+
+    // Skills Filter Search Functionality
+    function filterSkills() {
+      const term = document.getElementById('skillSearchInput').value.toLowerCase();
+      document.querySelectorAll('.skill-item').forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(term)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Toast Alert Helper
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
